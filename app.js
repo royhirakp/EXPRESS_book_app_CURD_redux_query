@@ -31,15 +31,13 @@ const tokenVarification = (req, res, next) => {
   }
 };
 // login and register
-app.use(userR);
+app.use("/api/v1", userR);
 
 // books and comment post // with auth
 app.use("/api/v1/bookAuth", tokenVarification, BookRoutsAutintcation);
 //get books list // get single book
 app.use("/api/v1/book", Book);
-app.use("/", (req, res) => {
-  res.send({ status: "working" });
-});
+
 app.use("*", (req, res) => {
   res.send({ status: "404" });
 });
